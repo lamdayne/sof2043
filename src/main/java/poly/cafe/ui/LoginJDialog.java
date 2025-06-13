@@ -9,6 +9,7 @@ import poly.cafe.dao.impl.UserDAOImpl;
 import poly.cafe.entity.User;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
+import poly.cafe.util.XStr;
 
 /**
  *
@@ -43,6 +44,7 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         txtPassword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         btnLogin = new javax.swing.JButton();
+        chkPassword = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,6 +76,13 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
             }
         });
 
+        chkPassword.setText("Hiển thị mật khẩu");
+        chkPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +104,8 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
                             .addComponent(txtUsername)
                             .addComponent(jLabel4)
                             .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chkPassword))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,13 +126,15 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
                         .addGap(18, 18, 18)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkPassword))
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnExit))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +155,15 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
+    private void chkPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPasswordActionPerformed
+        // TODO add your handling code here:
+        if (chkPassword.isSelected()) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkPasswordActionPerformed
+
     @Override
     public void open() {
         this.setLocationRelativeTo(null);
@@ -156,14 +177,16 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         User user = dao.findById(username);
         if (user == null) {
             XDialog.alert("Sai tên đăng nhập!");
-        } else if (!password.equals(user.getPassword())) {
-            XDialog.alert("Sai mật khẩu đăng nhập!");
-        } else if (!user.isEnabled()) {
-            XDialog.alert("Tài khoản của bạn đang tạm dừng!");
         } else {
-            XDialog.alert("Đăng nhập thành công");
-            XAuth.user = user; // duy trì user đăng nhập
-            this.dispose();
+            if (!XStr.encodeB64(password).equals(user.getPassword())) {
+                XDialog.alert("Sai mật khẩu đăng nhập!");
+            } else if (!user.isEnabled()) {
+                XDialog.alert("Tài khoản của bạn đang tạm dừng!");
+            } else {
+                XDialog.alert("Đăng nhập thành công");
+                XAuth.user = user; // duy trì user đăng nhập
+                this.dispose();
+            }
         }
     }
 
@@ -213,6 +236,7 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox chkPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

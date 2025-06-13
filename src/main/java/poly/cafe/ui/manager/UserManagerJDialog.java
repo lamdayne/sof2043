@@ -11,6 +11,7 @@ import poly.cafe.dao.impl.UserDAOImpl;
 import poly.cafe.entity.User;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
+import poly.cafe.util.XStr;
 
 /**
  *
@@ -72,6 +73,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         btnMovePrevious = new javax.swing.JButton();
         btnMoveNext = new javax.swing.JButton();
         btnMoveFirst = new javax.swing.JButton();
+        chkPassword = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản Lý Tài Khoản");
@@ -245,6 +247,13 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
             }
         });
 
+        chkPassword.setText("Hiển thị mật khẩu");
+        chkPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -256,28 +265,31 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
                         .addComponent(lbPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdbManager, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdbStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdbOnline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdbPause, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(txtFullName)
-                                .addComponent(jLabel5)
-                                .addComponent(txtComfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addComponent(jLabel7))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(rdbManager, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdbStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(rdbOnline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdbPause, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3)
+                                        .addComponent(txtFullName)
+                                        .addComponent(jLabel5)
+                                        .addComponent(txtComfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                        .addComponent(jLabel7))))
+                            .addComponent(chkPassword)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(btnCreate)
@@ -322,6 +334,8 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtComfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -344,7 +358,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
                     .addComponent(btnMoveFirst)
                     .addComponent(btnMoveNext)
                     .addComponent(btnMovePrevious))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         tabs.addTab("BIỂU MẪU", jPanel2);
@@ -431,6 +445,17 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
             this.edit();
         }
     }//GEN-LAST:event_tblUserMouseClicked
+
+    private void chkPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPasswordActionPerformed
+        // TODO add your handling code here:
+        if (chkPassword.isSelected()) {
+            txtPassword.setEchoChar((char) 0);
+            txtComfirmPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('*');
+            txtComfirmPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkPasswordActionPerformed
 
     @Override
     public void open() {
@@ -572,19 +597,19 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
     @Override
     public void deleteCheckedItems() {
         if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
-        for (int i = 0; i < tblUser.getRowCount(); i++) {
-            if ((Boolean) tblUser.getValueAt(i, 6) && items.get(i).getUsername().equals(XAuth.user.getUsername())) {
-                XDialog.alert("Không thể xóa tài khoản đang đăng nhập!");
-                return;
+            for (int i = 0; i < tblUser.getRowCount(); i++) {
+                if ((Boolean) tblUser.getValueAt(i, 6) && items.get(i).getUsername().equals(XAuth.user.getUsername())) {
+                    XDialog.alert("Không thể xóa tài khoản đang đăng nhập!");
+                    return;
+                }
             }
-        }
-        for (int i = 0; i < tblUser.getRowCount(); i++) {
-            if ((Boolean) tblUser.getValueAt(i, 6)) {
-                dao.deleteById(items.get(i).getUsername());
+            for (int i = 0; i < tblUser.getRowCount(); i++) {
+                if ((Boolean) tblUser.getValueAt(i, 6)) {
+                    dao.deleteById(items.get(i).getUsername());
+                }
             }
+            fillToTable();
         }
-        fillToTable();
-    }
     }
 
     private void setCheckedAll(boolean checked) {
@@ -682,6 +707,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
     private javax.swing.ButtonGroup btnStatusGr;
     private javax.swing.JButton btnUncheckAll;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JCheckBox chkPassword;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

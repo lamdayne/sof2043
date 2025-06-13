@@ -10,6 +10,7 @@ import poly.cafe.entity.User;
 import poly.cafe.util.XDialog;
 import poly.cafe.util.XJdbc;
 import poly.cafe.util.XQuery;
+import poly.cafe.util.XStr;
 
 /**
  *
@@ -27,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
     public User create(User entity) {
         Object[] values = {
             entity.getUsername(),
-            entity.getPassword(),
+            XStr.encodeB64(entity.getPassword()),
             entity.isEnabled(),
             entity.getFullname(),
             entity.getPhoto(),
@@ -49,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void update(User entity) {
         Object[] values = {
-            entity.getPassword(),
+            XStr.encodeB64(entity.getPassword()),
             entity.isEnabled(),
             entity.getFullname(),
             entity.getPhoto(),
