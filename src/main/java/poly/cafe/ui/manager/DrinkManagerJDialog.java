@@ -568,11 +568,11 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
         Category category = (Category) cboCategories.getSelectedItem();
         Drink entity = new Drink();
 
-        if (txtId.getText().isEmpty() || txtId.getText() == null) {
+        if (txtId.getText().isEmpty() || txtId.getText().equals("null")) {
             XDialog.alert("Vui lòng nhập mã đồ uống");
             return null;
         }
-        if (txtName.getText().isEmpty() || txtName.getText() == null) {
+        if (txtName.getText().isEmpty() || txtName.getText().equals("null")) {
             XDialog.alert("Vui lòng nhập tên đồ uống");
             return null;
         } else if (txtName.getText().matches(".*\\d.*")) {
