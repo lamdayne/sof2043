@@ -419,7 +419,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
     @Override
     public Category getForm() {
         Category entity = new Category();
-        if (txtId.getText() == null || txtId.getText().isEmpty()) {
+        if (txtId.getText() == null || txtId.getText().isEmpty() || txtId.getText().equals("null")) {
             XDialog.alert("Vui lòng nhập mã loại");
         } else if (txtName.getText() == null || txtName.getText().isEmpty()) {
             XDialog.alert("Vui lòng nhập tên loại");
