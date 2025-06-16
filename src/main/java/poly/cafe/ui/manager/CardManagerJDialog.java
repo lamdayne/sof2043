@@ -391,8 +391,12 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
     @Override
     public Card getForm() {
         Card entity = new Card();
+        CardDAOImpl cardDao = new CardDAOImpl();
         if (txtId.getText().isEmpty()) {
             XDialog.alert("Mã thẻ không được để trống");
+            return null;
+        } else if (!cardDao.equals(txtId.getText())) {
+            XDialog.alert("Mã thẻ đã tồn tại");
             return null;
         }
         try {

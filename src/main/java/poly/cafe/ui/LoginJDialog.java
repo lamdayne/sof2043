@@ -154,8 +154,12 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         String password = txtPassword.getText();
         UserDAO dao = new UserDAOImpl();
         User user = dao.findById(username);
-        if (user == null) {
-            XDialog.alert("Sai tên đăng nhập!");
+        if (username.isEmpty()) {
+            XDialog.alert("Tên đăng nhập không được để trống");
+        } else if (user == null) {
+            XDialog.alert("Tài khoản không tồn tại");
+        } else if (password.isEmpty()) {
+            XDialog.alert("Vui lòng nhập mật khẩu");
         } else if (!password.equals(user.getPassword())) {
             XDialog.alert("Sai mật khẩu đăng nhập!");
         } else if (!user.isEnabled()) {

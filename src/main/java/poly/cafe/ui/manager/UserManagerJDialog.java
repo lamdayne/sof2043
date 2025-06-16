@@ -520,7 +520,6 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
             return;
         }
         dao.create(entity);
-        XDialog.alert("Thêm người dùng thành công");
         this.fillToTable();
         this.clear();
     }
