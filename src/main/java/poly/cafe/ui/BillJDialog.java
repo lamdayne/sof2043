@@ -30,7 +30,6 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     BillDAO billDao = new BillDAOImpl();
     BillDetailDAO billDetailDao = new BillDetailDAOImpl();
     List<BillDetail> billDetails = List.of();
-    
 
     /**
      * Creates new form BillJDialog
@@ -328,12 +327,20 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     public void updateQuantity() { // thay đổi số lượng đồ uống
         if (bill.getStatus() == 0) { // chưa thanh toán hoặc chưa bị canceled
             String input = XDialog.prompt("Số lượng mới?");
-            if (input != null && input.length() > 0) {
-                BillDetail detail = billDetails.get(tblBillDetails.getSelectedRow());
-                detail.setQuantity(Integer.parseInt(input));
-                billDetailDao.update(detail);
-                this.fillBillDetails();
+            try {
+                if (Integer.parseInt(input) <= 0) {
+                    XDialog.alert("Số lượng phải lớn hơn 0");
+                }
+                if (input != null && input.length() > 0) {
+                    BillDetail detail = billDetails.get(tblBillDetails.getSelectedRow());
+                    detail.setQuantity(Integer.parseInt(input));
+                    billDetailDao.update(detail);
+                    this.fillBillDetails();
+                }
+            } catch (Exception e) {
+                XDialog.alert("Số lượng phải là một số hợp lệ");
             }
+
         }
     }
 
