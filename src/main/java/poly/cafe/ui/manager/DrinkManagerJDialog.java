@@ -571,6 +571,9 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
         if (txtId.getText().isEmpty() || txtId.getText().equals("null")) {
             XDialog.alert("Vui lòng nhập mã đồ uống");
             return null;
+        } else if (txtId.getText().matches(".*[^a-zA-Z0-9 ].*")) {
+            XDialog.alert("Mã đồ uống không chứa ký tự đặc biệt");
+            return null;
         }
         if (txtName.getText().isEmpty() || txtName.getText().equals("null")) {
             XDialog.alert("Vui lòng nhập tên đồ uống");
