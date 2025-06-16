@@ -629,6 +629,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
             return;
         }
         dao.create(entity);
+        XDialog.alert("Thêm đồ uống thành công");
         this.fillToTable();
         this.clear();
     }
