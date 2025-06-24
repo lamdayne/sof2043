@@ -510,6 +510,11 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         btnCreate.setEnabled(!editable);
         btnUpdate.setEnabled(editable);
         btnDelete.setEnabled(editable);
+        int rowCount = tblCustomers.getRowCount();
+        btnMoveFirst.setEnabled(editable && rowCount > 0);
+        btnMovePrevious.setEnabled(editable && rowCount > 0);
+        btnMoveNext.setEnabled(editable && rowCount > 0);
+        btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
     @Override
