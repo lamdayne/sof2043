@@ -95,6 +95,11 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
                 return types [columnIndex];
             }
         });
+        tblCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCustomersMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCustomers);
 
         btnCheckAll.setText("Chọn tất cả");
@@ -415,6 +420,13 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         // TODO add your handling code here:
         this.moveLast();
     }//GEN-LAST:event_btnMoveLastActionPerformed
+
+    private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.edit();
+        }
+    }//GEN-LAST:event_tblCustomersMouseClicked
 
     @Override
     public void open() {
