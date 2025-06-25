@@ -6,26 +6,26 @@ package poly.cafe.ui;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import poly.cafe.dao.CustomersDAO;
-import poly.cafe.dao.impl.CustomersDAOImpl;
-import poly.cafe.entity.Customers;
+import poly.cafe.dao.impl.EmployeeDAOImpl;
+import poly.cafe.entity.Employee;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDate;
 import poly.cafe.util.XDialog;
+import poly.cafe.dao.EmployeeDAO;
 
 /**
  *
  * @author PHUONG LAM
  */
-public class CustomersJFrame extends javax.swing.JFrame implements CustomersController {
+public class EmployeeJFrame extends javax.swing.JFrame implements EmployeeController {
 
-    CustomersDAO dao = new CustomersDAOImpl();
-    List<Customers> items = List.of();
+    EmployeeDAO dao = new EmployeeDAOImpl();
+    List<Employee> items = List.of();
     
     /**
      * Creates new form CustomersJFrame
      */
-    public CustomersJFrame() {
+    public EmployeeJFrame() {
         initComponents();
     }
 
@@ -42,24 +42,20 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         tabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCustomers = new javax.swing.JTable();
+        tblEmployee = new javax.swing.JTable();
         btnCheckAll = new javax.swing.JButton();
         btnUncheckAll = new javax.swing.JButton();
         btnDeleteCheckItems = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtCustomerId = new javax.swing.JTextField();
+        txtEmployeeId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtFullName = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtDateOfBirth = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        rdbMale = new javax.swing.JRadioButton();
-        rdbFemale = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtJobTitle = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
@@ -70,6 +66,11 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         btnMovePrevious = new javax.swing.JButton();
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
+        txtLastName = new javax.swing.JTextField();
+        txtSalary = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtHireDate = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,28 +80,28 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
             }
         });
 
-        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã khách hàng", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "SDT", "Email", ""
+                "EmployeeId", "First name", "Lastname", "Email", "Phone", "HireDate", "JobTitle", "Salary", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        tblCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblCustomersMouseClicked(evt);
+                tblEmployeeMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblCustomers);
+        jScrollPane1.setViewportView(tblEmployee);
 
         btnCheckAll.setText("Chọn tất cả");
         btnCheckAll.addActionListener(new java.awt.event.ActionListener() {
@@ -156,30 +157,19 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         tabs.addTab("Danh Sách", jPanel1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Mã khách hàng");
+        jLabel2.setText("Mã nhân viên");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Họ tên");
+        jLabel3.setText("FirstName");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Ngày sinh");
-
-        txtDateOfBirth.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Giới tính");
-
-        btnGroup.add(rdbMale);
-        rdbMale.setText("Nam");
-
-        btnGroup.add(rdbFemale);
-        rdbFemale.setText("Nữ");
+        jLabel4.setText("Lastname");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Địa chỉ");
+        jLabel6.setText("SDT");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("SDT");
+        jLabel7.setText("JobTitle");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Email");
@@ -240,6 +230,13 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Lương");
+
+        jLabel5.setText("Hire Date");
+
+        txtHireDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -263,34 +260,33 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
                         .addComponent(btnMoveNext)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMoveLast)
-                        .addGap(0, 47, Short.MAX_VALUE))
+                        .addGap(0, 50, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(rdbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(rdbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(38, 38, 38)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(txtEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(7, 7, 7)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtJobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDateOfBirth)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                            .addComponent(txtLastName)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHireDate, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
                         .addGap(41, 41, 41))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -303,24 +299,27 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHireDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbMale)
-                    .addComponent(rdbFemale)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtJobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
@@ -421,12 +420,12 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
         this.moveLast();
     }//GEN-LAST:event_btnMoveLastActionPerformed
 
-    private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
+    private void tblEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
             this.edit();
         }
-    }//GEN-LAST:event_tblCustomersMouseClicked
+    }//GEN-LAST:event_tblEmployeeMouseClicked
 
     @Override
     public void open() {
@@ -435,43 +434,46 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
     }
 
     @Override
-    public void setForm(Customers entity) {
-        txtCustomerId.setText(String.valueOf(entity.getCustomerId()));
-        txtFullName.setText(entity.getFullName());
-        txtDateOfBirth.setText(XDate.format(entity.getDateOfBirth(), "MM/dd/yyyy"));
-        rdbMale.setSelected(entity.isGender());
-        txtAddress.setText(entity.getAddress());
-        txtPhone.setText(String.valueOf(entity.getPhone()));
+    public void setForm(Employee entity) {
+        txtEmployeeId.setText(String.valueOf(entity.getEmployeeID()));
+        txtFirstName.setText(entity.getFirstName());
+        txtLastName.setText(entity.getLastName());
         txtEmail.setText(entity.getEmail());
+        txtPhone.setText(entity.getPhone());
+        txtHireDate.setText(XDate.format(entity.getHireDate(), "MM/dd/yyyy"));
+        txtJobTitle.setText(entity.getJobTitle());
+        txtSalary.setText(String.valueOf(entity.getSalary()));
     }
 
     @Override
-    public Customers getForm() {
-        Customers entity = new Customers();
-        entity.setCustomerId(Integer.parseInt(txtCustomerId.getText()));
-        entity.setFullName(txtFullName.getText());
-        entity.setDateOfBirth(XDate.parse(txtDateOfBirth.getText(), "MM/dd/yyyy"));
-        entity.setGender(rdbMale.isSelected());
-        entity.setAddress(txtAddress.getText());
-        entity.setPhone(txtPhone.getText());
+    public Employee getForm() {
+        Employee entity = new Employee();
+        entity.setEmployeeID(Integer.parseInt(txtEmployeeId.getText()));
+        entity.setFirstName(txtFirstName.getText());
+        entity.setLastName(txtLastName.getText());
         entity.setEmail(txtEmail.getText());
+        entity.setPhone(txtPhone.getText());
+        entity.setHireDate(XDate.parse(txtHireDate.getText(), "MM/dd/yyyy"));
+        entity.setJobTitle(txtJobTitle.getText());
+        entity.setSalary(Float.parseFloat(txtSalary.getText()));
         return entity;
     }
 
     @Override
     public void fillToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblEmployee.getModel();
         model.setRowCount(0);
         items = dao.findAll();
         items.forEach(item -> {
             Object[] data = {
-                item.getCustomerId(),
-                item.getFullName(),
-                item.getDateOfBirth(),
-                item.isGender() ? "Nam" : "Nữ",
-                item.getAddress(),
-                item.getPhone(),
+                item.getEmployeeID(),
+                item.getFirstName(),
+                item.getLastName(),
                 item.getEmail(),
+                item.getPhone(),
+                item.getHireDate(),
+                item.getJobTitle(),
+                item.getSalary(),
                 false
             };
             model.addRow(data);
@@ -480,7 +482,7 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
 
     @Override
     public void edit() {
-        Customers entity = items.get(tblCustomers.getSelectedRow());
+        Employee entity = items.get(tblEmployee.getSelectedRow());
         this.setForm(entity);
         this.setEditable(true);
         tabs.setSelectedIndex(1);
@@ -488,7 +490,7 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
 
     @Override
     public void create() {
-        Customers entity = this.getForm();
+        Employee entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
         this.clear();
@@ -496,7 +498,7 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
 
     @Override
     public void update() {
-        Customers entity = this.getForm();
+        Employee entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
@@ -504,7 +506,7 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
     @Override
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-            dao.deleteById(txtCustomerId.getText());
+            dao.deleteById(txtEmployeeId.getText());
             this.fillToTable();
             this.clear();
         }
@@ -512,17 +514,17 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
 
     @Override
     public void clear() {
-        this.setForm(new Customers());
+        this.setForm(new Employee());
         this.setEditable(false);
     }
 
     @Override
     public void setEditable(boolean editable) {
-        txtCustomerId.setEditable(!editable);
+        txtEmployeeId.setEditable(!editable);
         btnCreate.setEnabled(!editable);
         btnUpdate.setEnabled(editable);
         btnDelete.setEnabled(editable);
-        int rowCount = tblCustomers.getRowCount();
+        int rowCount = tblEmployee.getRowCount();
         btnMoveFirst.setEnabled(editable && rowCount > 0);
         btnMovePrevious.setEnabled(editable && rowCount > 0);
         btnMoveNext.setEnabled(editable && rowCount > 0);
@@ -542,9 +544,9 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
     @Override
     public void deleteCheckedItems() {
         if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
-            for (int i = 0; i < tblCustomers.getRowCount(); i++) {
-                if ((Boolean) tblCustomers.getValueAt(i, 7)) {
-                    dao.deleteById(String.valueOf(items.get(i).getCustomerId()));
+            for (int i = 0; i < tblEmployee.getRowCount(); i++) {
+                if ((Boolean) tblEmployee.getValueAt(i, 8)) {
+                    dao.deleteById(String.valueOf(items.get(i).getEmployeeID()));
                 }
             }
             this.fillToTable();
@@ -552,8 +554,8 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
     }
     
     private void setCheckedAll(boolean checked) {
-        for (int i = 0; i < tblCustomers.getRowCount(); i++) {
-            tblCustomers.setValueAt(checked, i, 7);
+        for (int i = 0; i < tblEmployee.getRowCount(); i++) {
+            tblEmployee.setValueAt(checked, i, 8);
         }
     }
 
@@ -564,28 +566,28 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
 
     @Override
     public void movePrevious() {
-        this.moveTo(tblCustomers.getSelectedRow() - 1);
+        this.moveTo(tblEmployee.getSelectedRow() - 1);
     }
 
     @Override
     public void moveNext() {
-        this.moveTo(tblCustomers.getSelectedRow() + 1);
+        this.moveTo(tblEmployee.getSelectedRow() + 1);
     }
 
     @Override
     public void moveLast() {
-        this.moveTo(tblCustomers.getRowCount() - 1);
+        this.moveTo(tblEmployee.getRowCount() - 1);
     }
 
     @Override
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
-        } else if (index >= tblCustomers.getRowCount()) {
+        } else if (index >= tblEmployee.getRowCount()) {
             this.moveFirst();
         } else {
-            tblCustomers.clearSelection();
-            tblCustomers.setRowSelectionInterval(index, index);
+            tblEmployee.clearSelection();
+            tblEmployee.setRowSelectionInterval(index, index);
             this.edit();
         }
     }
@@ -607,20 +609,21 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomersJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomersJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomersJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomersJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomersJFrame().setVisible(true);
+                new EmployeeJFrame().setVisible(true);
             }
         });
     }
@@ -646,19 +649,20 @@ public class CustomersJFrame extends javax.swing.JFrame implements CustomersCont
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rdbFemale;
-    private javax.swing.JRadioButton rdbMale;
     private javax.swing.JTabbedPane tabs;
-    private javax.swing.JTable tblCustomers;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtCustomerId;
-    private javax.swing.JFormattedTextField txtDateOfBirth;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtEmployeeId;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JFormattedTextField txtHireDate;
+    private javax.swing.JTextField txtJobTitle;
+    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtSalary;
     // End of variables declaration//GEN-END:variables
 
     

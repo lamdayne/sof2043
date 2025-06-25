@@ -4,13 +4,13 @@
  */
 package poly.cafe.ui;
 
-import poly.cafe.entity.Customers;
+import poly.cafe.entity.Employee;
 import poly.cafe.ui.manager.CrudController;
 
 /**
  *
  * @author PHUONG LAM
  */
-public interface CustomersController extends CrudController<Customers>{
+public interface EmployeeController extends CrudController<Employee>{
     
 }

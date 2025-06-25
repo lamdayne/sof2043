@@ -4,12 +4,12 @@
  */
 package poly.cafe.dao;
 
-import poly.cafe.entity.Customers;
+import poly.cafe.entity.Employee;
 
 /**
  *
  * @author PHUONG LAM
  */
-public interface CustomersDAO extends CrudDAO<Customers, String> {
+public interface EmployeeDAO extends CrudDAO<Employee, String> {
     
 }
