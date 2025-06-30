@@ -22,6 +22,14 @@ public class XStr {
         byte[] data = Base64.getDecoder().decode(text);
         return new String(data);
     }
+    
+    public static String toHexString(byte[] byteCode) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : byteCode) {
+            sb.append(String.format("%02x", b)); // chuyển từng byte sang 2 ký tự hex
+        }
+        return sb.toString();
+    }
 
     public static String getKey(String... args) {
         if (args.length == 0) {
